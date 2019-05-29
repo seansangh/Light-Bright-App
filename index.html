@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.8.6/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.6/umd/react-dom.production.min.js"></script>   
+    <script src=" https://unpkg.com/@babel/standalone/babel.min.js"></script> 
+    <script type="text/babel">
+    var r=105; var arr=[];
+    for(var i=0;i<r; i++){
+      arr.push(i)
+    }
+var mu= "\u00A9"+ new Date().getFullYear();
+
+class MyC extends React.Component{
+  constructor(props){
+    super(props);
+    this.state={
+      arr: arr, last: "", time: "", display:"no"
+    }
+    this.myF= this.myF.bind(this);
+    this.myF2= this.myF2.bind(this);
+    this.myF3= this.myF3.bind(this);
+    this.myF4= this.myF4.bind(this);
+    this.myF5= this.myF5.bind(this);
+
+  }
+  
+  myF(event){
+    this.setState({last: event.target.id, date:  Date.now()});
+    var change= event.target.id.replace('a','');
+    var random=Math.floor(Math.random()*255);
+    var random1=Math.floor(Math.random()*100);
+    var random2=Math.floor(Math.random()*100);
+   random1=80; random2=80;
+ if(this.state.last==event.target.id && Date.now()-this.state.date<= 300){
+    $('#'+this.state.last).css('background', 'black');
+    $('#'+this.state.last).css('box-shadow', '0px 0px 0px 0px black') 
+}
+else{   
+  $('#'+event.target.id).css('background', 'radial-gradient(white, hsl('+random+','+50+'%,'+50+'%), hsl('+random+','+random1+'%,'+random2+'%),hsl('+random+','+random1+'%,'+random2+'%),hsl('+random+','+random1+'%,'+random2+'%)                            )')
+  $('#'+event.target.id).css('box-shadow', '0px 0px 20px 1px hsl('+random+','+50+'%,'+50+'%)')
+  
+
+  
+}
+  }
+  
+  myF2(event){
+   // alert(this.state.last)
+    $('#'+this.state.last).css('background', 'black');
+    $('#'+this.state.last).css('box-shadow', '0px 0px 0px 0px black')   
+  }
+  
+  myF3(event){
+    $('.arr').css('background', 'black');
+    $('.arr').css('box-shadow', '0px 0px 0px 0px black')
+  } 
+  
+  myF4(event){
+    if(this.state.display=="no"){
+      this.setState({display:"yes"});
+      $('#me').html('REMOVE DRAG')
+    }
+    else{
+      this.setState({display:"no"});
+      $('#me').html('ENABLE DRAG')      
+    }
+    
+  }
+  
+  myF5(event){
+    if(this.state.display=='yes'){
+       this.myF(event)
+    }
+  }
+  
+  render(){
+
+    return(
+     <div>
+    <div class="nu">
+     <div class="title">
+      
+      <div class="t">Light-Bright App</div>
+      <div class="title2">   
+       <ul>
+        <li class="t1" onClick={this.myF2}>RESET COLOR</li>
+        <li class="t2" onClick={this.myF3}>RESET ALL</li> 
+       </ul>
+      </div>
+     </div>    
+    
+    </div>
+    
+    <div class="content">
+     <div class="all container">
+       
+       <div id="cont">      
+        
+    <div class="lights">
+      <ul class="ul">
+      {arr.map((x,i)=><li  onMouseOver={this.myF5} onClick={this.myF} className={"arr"+i +" arr"} id={"a"+i} ></li>)}
+      </ul>
+    </div>
+      
+</div>
+     </div>
+    </div>    
+    
+    <div class="bottome">
+     <div class="all2 container">
+       <p>Lighten Circles: Click circles to lighten them. <a onClick={this.myF4} id="me">ENABLE DRAG</a></p>
+       <p>Darken Circles: Double click circles to remove light.</p>
+       <p>Reset Color: Click <i>"RESET COLOR"</i> to undo previous move.</p>
+       <p>Reset All: Click <i>"RESET ALL"</i> to reset the board.</p>
+       
+       <p class="copy" id="ma">{mu} <ado id="moom"></ado> Light-Bright App</p>
+
+     </div>
+    </div>
+        
+    </div>  
+    )}
+  
+  
+}
+
+ReactDOM.render(<MyC/>, document.getElementById('bo'))
+    
+    </script>
+  </head>
+    
+  <body id="body">
+    <div id="bo"></div>
+ <!--   <div class="nu">
+     <div class="title">
+      
+      <div class="t">Light-Bright App</div>
+      <div class="title2">   
+       <ul>
+        <li class="t1">RESET COLOR</li>
+        <li class="t2">RESET ALL</li> 
+       </ul>
+      </div>
+     </div>    
+    
+    </div>
+    
+    <div class="content">
+     <div class="all container">
+       
+       <div id="cont"></div>
+     </div>
+    </div>    
+    
+    <div class="bottome">
+     <div class="all2 container">
+       <p>Lighten Circles: Click circles to lighten them.</p>
+       <p>Darken Circles: Double click circles to remove light.</p>
+       <p>Reset Color: Click <i>"RESET COLOR"</i> to undo previous move.</p>
+       <p>Reset All: Click <i>"RESET ALL"</i> to reset the board.</p>
+       
+       <p class="copy" id="ma">&copy <ado id="moom"></ado> Light-Bright App</p>
+
+
+     </div>
+    </div>-->
+
+       <script type="text/javascript">
+document.getElementById("moom").innerHTML= new Date().getFullYear();
+
+       </script>
+  </body>
+</html>
